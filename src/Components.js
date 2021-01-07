@@ -1,5 +1,6 @@
 import React from 'react'
 import './Components.css'
+import Inventory from './Core.js'
 
 class Button extends React.Component {
   constructor(data) {
@@ -7,11 +8,6 @@ class Button extends React.Component {
     this.state = {
       enabled: true
     }
-    // this.clckAction = this.clckAction.bind(this)
-  }
-
-  onClick() {
-    this.clckAction()
   }
 
   render() {
@@ -31,6 +27,7 @@ class ResourceButton extends React.Component {
     this.state = {
       enabled: true
     }
+    console.log(new Inventory());
   }
 
   onClick() {
