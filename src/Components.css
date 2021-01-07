@@ -1,0 +1,15 @@
+.Button {
+  color: var(--default-text-color);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.5s ease-in, color 0.5s ease-in;
+}
+
+.Button.Enabled:hover {
+  cursor: pointer;
+  color: var(--default-highlight-color);
+  border-color: var(--default-highlight-color);
+}
+
+.Button.Disabled {
+  color: var(--default-disabled-color);
+}
