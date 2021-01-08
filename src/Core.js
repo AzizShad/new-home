@@ -1,9 +1,9 @@
 import keys from './Keys';
 
 class Resource {
-  constructor(key, name, modifiers, requirements) {
+  constructor(key, desc, modifiers, requirements) {
     this.key = key;
-    this.name = name;
+    this.desc = desc;
     this.modifiers = modifiers;
     this.requirements = requirements;
     this.amount = 0;
@@ -21,6 +21,10 @@ class Resource {
 class Inventory {
   constructor() {
     this[keys.branch.key] = new Resource(keys.branch.key, keys.branch.desc); 
+  }
+
+  get(resourceName) {
+    return this[resourceName];
   }
 }
 
