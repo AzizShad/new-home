@@ -1,16 +1,10 @@
-import elmo from './elmo.gif';
-import './App.css';
-import { ResourceButton } from './Components.js'
-import Inventory from './Core.js'
+import './App.css'
+import { World } from './features/world/World';
 
 function App() {
-  let inventory = new Inventory()
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={elmo} alt='fire' />
-        <ResourceButton resource={inventory.get('branch')}></ResourceButton>
-      </header>
+        <World />
     </div>
   );
 }

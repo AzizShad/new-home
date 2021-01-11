@@ -1,14 +1,5 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-
-.App-header {
   background-color: black;
   min-height: 100vh;
   display: flex;

@@ -1,7 +1,10 @@
 :root {
-  --default-text-color: rgb(220, 220, 220);
-  --default-highlight-color: rgb(255, 255, 255);
-  --default-disabled-color: rgb(150, 150, 150);
+  --default-text-color-s: 220, 220, 220;
+  --default-text-color: rgb(var(--default-text-color-s));
+  --default-highlight-color-s: 255, 255, 255;
+  --default-highlight-color: rgb(var(--default-highlight-color-s));
+  --default-disabled-color-s: 150, 150, 150;
+  --default-disabled-color: rgb(var(--default-diabled-color-s));
 }
 
 body {
