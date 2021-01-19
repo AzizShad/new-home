@@ -17,10 +17,20 @@ export const inventorySlice = createSlice({
       const { resourceId } = action.payload;
       const resource = state[resourceId];
       resource.amount += 1;
+    },
+    enableResource: (state, action) => {
+      const { resourceId } = action.payload;
+      const resource = state[resourceId];
+      resource.enabled = true;
+    },
+    disableResource: (state, action) => {
+      const { resourceId } = action.payload;
+      const resource = state[resourceId];
+      resource.enabled = false;
     }
   },
 });
 
-export const { addResource } = inventorySlice.actions;
+export const { addResource, enableResource, disableResource } = inventorySlice.actions;
 
 export default inventorySlice.reducer;

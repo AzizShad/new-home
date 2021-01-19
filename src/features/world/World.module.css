@@ -16,7 +16,7 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
-.button {
+/* .button {
   appearance: none;
   background: none;
   font-size: 32px;
@@ -30,7 +30,7 @@
   background-color: rgba(112, 76, 182, 0.1);
   border-radius: 2px;
   transition: all 0.15s;
-}
+} */
 
 .textbox {
   font-size: 32px;
@@ -40,7 +40,7 @@
   margin-right: 8px;
 }
 
-.button:hover {
+/* .button:hover {
   border: 2px solid rgba(var(--default-highlight-color-s), 0.4);
 }
 
@@ -71,4 +71,4 @@
   width: 0%;
   opacity: 1;
   transition: 0s
-}
+} */

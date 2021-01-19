@@ -1,24 +1,31 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import { ResourceButton } from '../Resource/Resource';
 
-// import {
-  // setInventory
-// } from '../village/villageSlice';
-import {
-  addResource
-} from '../inventory/inventorySlice';
-import styles from './World.module.css';
+let World = ({ state, inventory }) => {
+  const inventoryElements = [];
+  for (const resource in inventory) {
+    inventoryElements.push(
+      <ResourceButton
+        key={resource}
+        resource={inventory[resource]}>
+      </ResourceButton>
+    );
+  }
 
-export function World() {
-  const dispatch = useDispatch();
   return (
     <div>
-      <button
-        className={styles.loadingButton}
-        onClick={() => dispatch(addResource({ resourceId: 'wood' }))}
-      >
-        Add Wood
-        </button>
+      {inventoryElements}
     </div >
   );
+}
+const mapStateToProps = state => ({
+  state: state,
+  inventory: state.inventory
+});
+
+World = connect(mapStateToProps)(World);
+
+export {
+  World
 }

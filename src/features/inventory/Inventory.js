@@ -1,45 +1,15 @@
-// import { connect } from 'react-redux'
-
-// const mapStateToProps = (
-//   state
-// ) => {
-//   return {
-//     todos: getVillageInventory(
-//       state.villages,
-//       state.currentVillageId || 0
-//     )
-//   };
-// };
-
-// const mapDispatchToProps = (
-//   dispatch
-// ) => {
-//   return {
-//     onTodoClick: (id) => {
-//       dispatch(addResource({
-//         villageId: 0,
-//         resourceId: id
-//       }));
-//     }
-//   };
-// };
-
-// const Inventory = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )();
-
-
 export const resourceList = {};
-createResourceEntry('wood', 'Wood');
-createResourceEntry('rock', 'Rock');
+createResourceEntry('wood', 'Wood', 1);
+createResourceEntry('rock', 'Rock', 3);
 
-function createResourceEntry(key, desc, amount = 0, requirements, modifiers = []) {
+function createResourceEntry(key, desc, timeout, amount = 0, requirements, modifiers = []) {
   resourceList[key] = {
     key: key,
     desc: desc,
     amount: amount,
+    timeout: timeout,
     requirements: requirements,
-    modifiers: modifiers
+    modifiers: modifiers,
+    enabled: true
   };
 }
