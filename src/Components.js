@@ -3,32 +3,38 @@ import './Components.css'
 
 class Button extends React.Component {
   constructor(data) {
-    super()
+    super();
+    this.afterElement = React.createRef();
   }
 
   addClassIfDisabled = () => {
     return this.props.enabled ? '' : 'disabled';
   }
 
+  addClassIfEnabled = () => {
+    return this.props.enabled ? 'enabled' : '';
+  }
+
   clickEvent = () => {
     if (this.props.enabled) {
-      console.log(this.props)
+      console.log(this.afterElement);
       this.props.onClick();
     }
   }
 
   render() {
     return (
-      <div>
-        <button
-          className={`button loadingButton ${this.addClassIfDisabled()}`}
-          onClick={this.clickEvent}
-        >
+      <div
+        onClick={this.clickEvent}
+        className={`button loadingButton ${this.addClassIfDisabled()}`}
+      >
+        <span>
           {this.props.name}
-        </button>
+        </span>
         <div
-          className="loadingButtonAfter"
-          style={{ transition: `width ${this.props.timeout}s linear, opacity 0.5s ease 1s` }}
+          className={`loadingButtonAfter ${this.addClassIfEnabled()}`}
+          ref={this.afterElement}
+          style={{ transition: `width ${this.props.timeout}s linear, opacity ${this.props.timeout}s ease 1s` }}
         ></div>
       </div>
     )
