@@ -4,7 +4,6 @@ import './Components.css'
 class Button extends React.Component {
   constructor(data) {
     super();
-    this.afterElement = React.createRef();
   }
 
   addClassIfDisabled = () => {
@@ -17,7 +16,6 @@ class Button extends React.Component {
 
   clickEvent = () => {
     if (this.props.enabled) {
-      console.log(this.afterElement);
       this.props.onClick();
     }
   }
@@ -33,7 +31,6 @@ class Button extends React.Component {
         </span>
         <div
           className={`loadingButtonAfter ${this.addClassIfEnabled()}`}
-          ref={this.afterElement}
           style={{ transition: `width ${this.props.timeout}s linear, opacity ${this.props.timeout}s ease 1s` }}
         ></div>
       </div>
