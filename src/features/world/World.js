@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ResourceButton } from '../Resource/Resource';
 
-const World = ({ state, inventory }) => {
+const World = () => {
+  const state = useSelector(state => state);
+  const inventory = useSelector(state => state.inventory);
+  useEffect(() => {
+    localStorage.setItem('state', JSON.stringify(state));
+  })
   return (
     <div date-id="world">
       {
@@ -21,10 +26,6 @@ const World = ({ state, inventory }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  state: state,
-  inventory: state.inventory
-});
 
 World.propTypes = {
   state: PropTypes.object,
@@ -34,4 +35,4 @@ World.propTypes = {
   }),
 };
 
-export default connect(mapStateToProps)(World);
+export default World;
