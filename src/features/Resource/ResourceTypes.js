@@ -26,5 +26,5 @@ resourceModifiers.set('default', {
   title: 'Default',
   display: false,
   description: 'Default +1 modifier',
-  action: (state, resource) => {return resource.amount + 1}
+  action: (state, resource, amount) => {return amount + 1}
 });

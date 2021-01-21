@@ -35,7 +35,7 @@ export const inventorySlice = createSlice({
         for (const modifierName of modifiers) {
           const modifierObject  = resourceModifiers.get(modifierName)
           if (modifierObject) {
-            amount = modifierObject.action(state, resource)
+            amount = modifierObject.action(state, resource, amount)
           }
         }
       }
