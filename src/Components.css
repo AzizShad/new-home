@@ -47,6 +47,7 @@
 .loadingButton {
   position: relative;
   margin-left: 8px;
+  user-select: none;
 }
 .button.loadingButton.disabled {
   color: rgb(var(--default-disabled-color-s), .4);
@@ -54,19 +55,7 @@
   cursor: default;
 }
 
-.loadingButtonAfter {
-  content: "";
-  background-color: rgba(var(--default-highlight-color-s), 0.15);
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  opacity: 1;
-}
-
-.loadingButtonAfter.enabled {
+.enabled {
   background-color: rgba(var(--default-highlight-color-s), 0.2);
   width: 0%;
   transition: 0s !important;

@@ -1,10 +1,36 @@
 import React from 'react'
 import './Components.css'
+import styled from 'styled-components';
+
+const LoadingDiv = styled.div`
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  ${({ enabled, timeout }) => {
+    return (
+      enabled ?
+        `
+          background-color: rgba(var(--default-highlight-color-s), 0.2);
+          width: 0%;
+          transition: 0s;
+        `
+        :
+        `
+          background-color: rgba(var(--default-highlight-color-s), 0.15);
+          width: 100%;
+          transition: width ${timeout}s linear, opacity ${timeout}s ease 1s 
+        `
+    )
+  }}
+`
 
 class Button extends React.Component {
   constructor(data) {
     super();
-    this.afterElement = React.createRef();
   }
 
   addClassIfDisabled = () => {
@@ -17,7 +43,6 @@ class Button extends React.Component {
 
   clickEvent = () => {
     if (this.props.enabled) {
-      console.log(this.afterElement);
       this.props.onClick();
     }
   }
@@ -31,11 +56,10 @@ class Button extends React.Component {
         <span>
           {this.props.name}
         </span>
-        <div
-          className={`loadingButtonAfter ${this.addClassIfEnabled()}`}
-          ref={this.afterElement}
-          style={{ transition: `width ${this.props.timeout}s linear, opacity ${this.props.timeout}s ease 1s` }}
-        ></div>
+        <LoadingDiv
+          timeout={this.props.timeout}
+          enabled={this.props.enabled}
+        ></LoadingDiv>
       </div>
     )
   }

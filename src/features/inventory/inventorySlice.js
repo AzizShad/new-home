@@ -2,8 +2,19 @@ import { createSlice } from '@reduxjs/toolkit';
 import { resourceTypes, resourceModifiers } from '../resource/ResourceTypes';
 
 const createDefaultInventory = () => {
+  if (localStorage.getItem('state')) {
+    const savedInventory = JSON.parse(localStorage.getItem('state'))?.inventory;
+    if (savedInventory) {
+      //This is to avoid being disabled on load, enhance later
+      for (let key in savedInventory) {
+        savedInventory[key].enabled = true; 
+      }
+      return savedInventory;
+    }
+  }
+
   let inventory = {};
-  for (let key in resourceTypes) {
+  for (const key in resourceTypes) {
     inventory[key] = Object.assign({}, resourceTypes[key]);
   }
   return inventory;
