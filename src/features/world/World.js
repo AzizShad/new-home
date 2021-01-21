@@ -6,7 +6,7 @@ import { ResourceButton } from '../Resource/Resource';
 
 const World = ({ state, inventory }) => {
   return (
-    <div>
+    <div date-id="world">
       {
         Object.values(inventory).map((resource) => {
           return (
@@ -31,7 +31,6 @@ World.propTypes = {
   inventory: PropTypes.shape({
     key: PropTypes.string,
     desc: PropTypes.string,
-    myname: PropTypes.string.isRequired,
   }),
 };
 
