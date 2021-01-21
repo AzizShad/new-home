@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ResourceButton } from '../Resource/Resource';
+import { ResourceButton } from '../resource/Resource';
 
 let World = ({ state, inventory }) => {
   const inventoryElements = [];
