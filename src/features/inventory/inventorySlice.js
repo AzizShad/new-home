@@ -2,6 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { resourceList } from '../inventory/Inventory';
 
 const createDefaultInventory = () => {
+  if(localStorage.getItem('inventory')){
+    return JSON.parse(localStorage.getItem('inventory'));
+  }
+
   let inventory = {};
   for (let key in resourceList) {
     inventory[key] = resourceList[key];
