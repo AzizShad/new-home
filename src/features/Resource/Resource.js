@@ -4,7 +4,7 @@ import {
   addResource,
   enableResource,
   disableResource
-} from '../inventory/InventorySlice';
+} from '../inventory/inventorySlice';
 
 const mapStateToProps = (
   state,
