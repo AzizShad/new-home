@@ -5,6 +5,9 @@ import {
   enableResource,
   disableResource
 } from '../inventory/inventorySlice';
+import {
+  checkCraftingRequirements
+} from '../crafting/craftingSlice';
 
 const mapStateToProps = (
   state,
@@ -24,9 +27,10 @@ const mapDispatchToProps = (
     onClick: () => {
       dispatch(disableResource({ resourceId: ownProps.resource.key }));
       setTimeout(() => {
+        dispatch(addResource({ resourceId: ownProps.resource.key }));
         dispatch(enableResource({ resourceId: ownProps.resource.key }));
+        dispatch(checkCraftingRequirements({ inventory: ownProps.inventory }));
       }, ownProps.resource.timeout * 1000)
-      dispatch(addResource({ resourceId: ownProps.resource.key }));
     }
   };
 }

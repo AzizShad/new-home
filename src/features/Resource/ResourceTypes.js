@@ -28,3 +28,15 @@ resourceModifiers.set('default', {
   description: 'Default +1 modifier',
   action: (state, resource, amount) => {return amount + 1}
 });
+resourceModifiers.set('wooden', {
+  title: 'Wood',
+  display: false,
+  description: 'You have a wooden tool! +1 modifier',
+  action: (state, resource, amount) => {return amount + 1}
+});
+resourceModifiers.set('rock', {
+  title: 'Rock',
+  display: false,
+  description: 'You have a stone tool! +2 modifier',
+  action: (state, resource, amount) => {return amount + 2}
+});
