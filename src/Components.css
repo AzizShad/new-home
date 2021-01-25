@@ -1,35 +1,22 @@
-.row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.row:not(:last-child) {
-  margin-bottom: 16px;
-}
-
-.value {
-  font-size: 78px;
-  padding-left: 16px;
-  padding-right: 16px;
-  margin-top: 2px;
-  font-family: 'Courier New', Courier, monospace;
-}
-
 .button {
   appearance: none;
   background: none;
-  font-size: 32px;
+  font-size: 1.5em;
   padding-left: 12px;
   padding-right: 12px;
   outline: none;
   border: 2px solid transparent;
-  color: var(--white);
+  color: var(--default-text-color);
   padding-bottom: 4px;
   cursor: pointer;
   background-color: rgba(112, 76, 182, 0.1);
   border-radius: 2px;
   transition: all 0.15s;
+}
+
+.button .subtitle {
+  font-size: .5em;
+  color: var(--default-subtext-color);
 }
 
 .textbox {
@@ -49,6 +36,7 @@
   margin-left: 8px;
   user-select: none;
 }
+
 .button.loadingButton.disabled {
   color: rgb(var(--default-disabled-color-s), .4);
   border: 2px solid transparent;

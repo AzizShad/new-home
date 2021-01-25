@@ -61,9 +61,9 @@ export const inventorySlice = createSlice({
     },
     removeResources: (state, action) => {
       const { requirements } = action.payload;
-      for(let resourceId in requirements) {
+      for (let resourceId in requirements) {
         const resource = state[resourceId];
-        resource.amount -= requirements[resourceId] || 0; 
+        resource.amount -= requirements[resourceId] || 0;
       }
     },
     addModifiers: (state, action) => {
@@ -72,6 +72,24 @@ export const inventorySlice = createSlice({
         const resource = state[resourceId];
         modifiers.forEach(modifier => resource.modifiers.push(modifier));
       })
+    },
+    checkResourceRequirements: (state, action) => {
+      const { crafting } = action.payload;
+      const inventory = state
+      for (let resourceId in inventory) {
+        const resource = inventory[resourceId];
+        const requirements = resource.requirements;
+        let hasRequirements = true;
+        requirements.forEach(requirementId => {
+          const item = crafting[requirementId];
+          if (!item.crafted) {
+            hasRequirements = false;
+          }
+        });
+        if (hasRequirements) {
+          resource.available = true;
+        }
+      }
     }
   },
 });
@@ -81,7 +99,8 @@ export const {
   enableResource,
   disableResource,
   removeResources,
-  addModifiers
+  addModifiers,
+  checkResourceRequirements
 } = inventorySlice.actions;
 
 export default inventorySlice.reducer;

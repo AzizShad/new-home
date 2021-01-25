@@ -8,6 +8,13 @@ import { CraftingButton } from '../crafting/Crafting';
 const World = () => {
   const state = useSelector(state => state);
   const inventory = useSelector(state => state.inventory);
+  const availableResources = [];
+  for (let key in inventory) {
+    if(inventory[key].available){
+      availableResources.push(inventory[key]);
+    }
+  }
+
   const crafting = useSelector(state => state.crafting);
   const craftableItems = [];
   for (let key in crafting) {
@@ -21,12 +28,13 @@ const World = () => {
   return (
     <div date-id="world">
       {
-        Object.values(inventory).map((resource) => {
+        availableResources.map((resource) => {
           return (
             <ResourceButton
               key={resource.key}
               resource={resource}
               inventory={inventory}
+              crafting={crafting}
             >
             </ResourceButton>
           );
@@ -38,6 +46,7 @@ const World = () => {
             <CraftingButton
               key={item.key}
               crafting={item}
+              inventory={inventory}
             >
             </CraftingButton>
           );

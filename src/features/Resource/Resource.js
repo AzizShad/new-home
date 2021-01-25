@@ -3,7 +3,8 @@ import { Button } from '../../Components';
 import {
   addResource,
   enableResource,
-  disableResource
+  disableResource,
+  checkResourceRequirements
 } from '../inventory/inventorySlice';
 import {
   checkCraftingRequirements
@@ -14,7 +15,7 @@ const mapStateToProps = (
   ownProps
 ) => {
   return {
-    name: `Gather ${ownProps.resource.desc}: ${ownProps.resource.amount}`,
+    title: `Gather ${ownProps.resource.desc}: ${ownProps.resource.amount}`,
     enabled: ownProps.resource.enabled,
     timeout: ownProps.resource.timeout
   };
@@ -30,6 +31,7 @@ const mapDispatchToProps = (
         dispatch(addResource({ resourceId: ownProps.resource.key }));
         dispatch(enableResource({ resourceId: ownProps.resource.key }));
         dispatch(checkCraftingRequirements({ inventory: ownProps.inventory }));
+        dispatch(checkResourceRequirements({ crafting: ownProps.crafting }));
       }, ownProps.resource.timeout * 1000)
     }
   };

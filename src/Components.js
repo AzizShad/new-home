@@ -53,9 +53,12 @@ class Button extends React.Component {
         onClick={this.clickEvent}
         className={`button loadingButton ${this.addClassIfDisabled()}`}
       >
-        <span>
-          {this.props.name}
-        </span>
+        <div>
+          {this.props.title}
+        </div>
+        <div className={`subtitle`}>
+          {this.props.subtitle}
+        </div>
         <LoadingDiv
           timeout={this.props.timeout}
           enabled={this.props.enabled}
