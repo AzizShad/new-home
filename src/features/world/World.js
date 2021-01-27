@@ -33,8 +33,6 @@ const World = () => {
             <ResourceButton
               key={resource.key}
               resource={resource}
-              inventory={inventory}
-              crafting={crafting}
             >
             </ResourceButton>
           );
@@ -45,8 +43,7 @@ const World = () => {
           return (
             <CraftingButton
               key={item.key}
-              crafting={item}
-              inventory={inventory}
+              item={item}
             >
             </CraftingButton>
           );

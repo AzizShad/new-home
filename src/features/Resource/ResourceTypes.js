@@ -2,6 +2,7 @@ export const resourceTypes = {};
 createResourceEntry('wood', 'Wood', 1);
 createResourceEntry('rock', 'Rock', 3, ['wooden_pick']);
 createResourceEntry('iron', 'Iron', 9, ['stone_pick']);
+createResourceEntry('diamond', 'Diamond', 15, ['iron_pick']);
 
 
 function createResourceEntry(key, desc, timeout, requirements = [], amount = 0, modifiers = ['default']) {
@@ -31,6 +32,12 @@ resourceModifiers.set('default', {
   description: 'Default +1 modifier',
   action: (state, resource, amount) => { return amount + 1 }
 });
+resourceModifiers.set('unlock', {
+  title: 'Unlock',
+  display: false,
+  description: 'You have unlocked this resource',
+  action: (state, resource, amount) => { return amount }
+});
 resourceModifiers.set('wooden', {
   title: 'Wood',
   display: false,
@@ -42,4 +49,10 @@ resourceModifiers.set('rock', {
   display: false,
   description: 'You have a stone tool! +2 modifier',
   action: (state, resource, amount) => { return amount + 2 }
+});
+resourceModifiers.set('iron', {
+  title: 'Iron',
+  display: false,
+  description: 'You have a Iron tool! x2 modifier',
+  action: (state, resource, amount) => { return amount * 2 }
 });

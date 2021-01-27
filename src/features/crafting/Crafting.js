@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../../Components';
 import {
   disableItem,
@@ -6,66 +6,63 @@ import {
 } from './craftingSlice';
 import {
   removeResources,
-  addModifiers
+  addModifiers,
+  checkResourceRequirements
 } from '../inventory/inventorySlice';
 
-const createSubTitle = (crafting) => {
-  const requirementsArray = [];
-  Object.keys(crafting.requirements).forEach(requirement => {
-    requirementsArray.push(`${crafting.requirements[requirement]} ${requirement}`)
-  });
-  if (!requirementsArray.length) {
-    return;
-  }
-  return `Cost: ${requirementsArray.join(', ')}`;
-};
+const CraftingButton = (props) => {
+  const dispatch = useDispatch();
+  const item = props.item;
 
-const isCraftingItemEnabled = (crafting, inventory) => {
-  const { enabled, requirements } = crafting;
-  let hasRequirements = true;
-  for (let resourceId in requirements) {
-    const resource = inventory[resourceId];
-    if (resource.amount < requirements[resourceId]) {
-      hasRequirements = false;
+  const { inventory, crafting } = useSelector(state => state);
+
+  const createSubTitle = (item) => {
+    const requirementsArray = [];
+    Object.keys(item.requirements).forEach(requirement => {
+      requirementsArray.push(`${item.requirements[requirement]} ${requirement}`)
+    });
+    if (!requirementsArray.length) {
+      return;
     }
-  }
-  return hasRequirements && enabled;
-};
-
-const mapStateToProps = (
-  state,
-  ownProps
-) => {
-  return {
-    title: `Craft ${ownProps.crafting.desc}`,
-    subtitle: createSubTitle(ownProps.crafting),
-    enabled: isCraftingItemEnabled(ownProps.crafting, ownProps.inventory),
-    timeout: ownProps.crafting.timeout
+    return `Cost: ${requirementsArray.join(', ')}`;
   };
-};
-
-const mapDispatchToProps = (
-  dispatch,
-  ownProps
-) => {
-  return {
-    onClick: () => {
-      dispatch(removeResources({ requirements: ownProps.crafting.requirements }));
-      dispatch(disableItem({ craftingId: ownProps.crafting.key }));
-      setTimeout(() => {
-        dispatch(createTool({ craftingId: ownProps.crafting.key }));
-        dispatch(addModifiers({
-          effectedResources: ownProps.crafting.effectedResources,
-          modifiers: ownProps.crafting.modifiers
-        }));
-      }, ownProps.crafting.timeout * 1000)
+  
+  const isCraftingItemEnabled = (item, inventory) => {
+    const { enabled, requirements } = item;
+    let hasRequirements = true;
+    for (let resourceId in requirements) {
+      const resource = inventory[resourceId];
+      if (resource.amount < requirements[resourceId]) {
+        hasRequirements = false;
+      }
     }
+    return hasRequirements && enabled;
   };
+  
+  const clickHandler = () => {
+    dispatch(removeResources({ requirements: item.requirements }));
+    dispatch(disableItem({ craftingId: item.key }));
+    setTimeout(() => {
+      dispatch(createTool({ craftingId: item.key }));
+      dispatch(addModifiers({
+        effectedResources: item.effectedResources,
+        modifiers: item.modifiers
+      }));
+      dispatch(checkResourceRequirements({ crafting: crafting }));
+    }, item.timeout * 1000);
+  };
+
+  return (
+    <Button
+      title={`Craft ${item.desc}`}
+      subtitle={createSubTitle(item)}
+      enabled={isCraftingItemEnabled(item, inventory)}
+      timeout={item.timeout}
+      onClick={clickHandler}
+    >
+    </Button>
+  );
 }
-const CraftingButton = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Button);
 
 export {
   CraftingButton
