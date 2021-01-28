@@ -1,9 +1,10 @@
 export const resourceTypes = {};
 createResourceEntry('wood', 'Wood', 1);
-createResourceEntry('rock', 'Rock', 3, ['wooden_pick']);
-createResourceEntry('iron', 'Iron', 9, ['stone_pick']);
-createResourceEntry('diamond', 'Diamond', 15, ['iron_pick']);
-
+createResourceEntry('stone', 'Stone', 3, ['stone_mine']);
+createResourceEntry('coal', 'Coal', 3, ['coal_mine']);
+createResourceEntry('iron', 'Iron', 6, ['iron_mine']);
+createResourceEntry('diamond', 'Diamond', 9, ['diamond_mine']);
+createResourceEntry('obsidian', 'Obsidian', 9, ['obsidian_mine']);
 
 function createResourceEntry(key, desc, timeout, requirements = [], amount = 0, modifiers = ['default']) {
   resourceTypes[key] = {
@@ -44,8 +45,8 @@ resourceModifiers.set('wooden', {
   description: 'You have a wooden tool! +1 modifier',
   action: (state, resource, amount) => { return amount + 1 }
 });
-resourceModifiers.set('rock', {
-  title: 'Rock',
+resourceModifiers.set('stone', {
+  title: 'Stone',
   display: false,
   description: 'You have a stone tool! +2 modifier',
   action: (state, resource, amount) => { return amount + 2 }

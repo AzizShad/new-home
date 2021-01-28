@@ -18,6 +18,10 @@
   color: var(--default-subtext-color);
 }
 
+.button.needsRequirements .subtitle {
+  color: var(--default-highlight-color);
+}
+
 .textbox {
   font-size: 32px;
   padding: 2px;
@@ -37,6 +41,12 @@
 }
 
 .button.loadingButton.disabled {
+  color: rgb(var(--default-disabled-color-s), .4);
+  border: 2px solid transparent;
+  cursor: default;
+}
+
+.button.loadingButton.needsRequirements {
   color: rgb(var(--default-disabled-color-s), .4);
   border: 2px solid transparent;
   cursor: default;

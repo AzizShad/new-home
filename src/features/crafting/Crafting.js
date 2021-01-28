@@ -14,7 +14,7 @@ const CraftingButton = (props) => {
   const dispatch = useDispatch();
   const item = props.item;
 
-  const { inventory, crafting } = useSelector(state => state);
+  const { inventory } = useSelector(state => state);
 
   const createSubTitle = (item) => {
     const requirementsArray = [];
@@ -26,7 +26,7 @@ const CraftingButton = (props) => {
     }
     return `Cost: ${requirementsArray.join(', ')}`;
   };
-  
+
   const isCraftingItemEnabled = (item, inventory) => {
     const { enabled, requirements } = item;
     let hasRequirements = true;
@@ -36,9 +36,9 @@ const CraftingButton = (props) => {
         hasRequirements = false;
       }
     }
-    return hasRequirements && enabled;
+    return hasRequirements;
   };
-  
+
   const clickHandler = () => {
     dispatch(removeResources({ requirements: item.requirements }));
     dispatch(disableItem({ craftingId: item.key }));
@@ -48,7 +48,7 @@ const CraftingButton = (props) => {
         effectedResources: item.effectedResources,
         modifiers: item.modifiers
       }));
-      dispatch(checkResourceRequirements({ crafting: crafting }));
+      dispatch(checkResourceRequirements({ craftingId: item.key }));
     }, item.timeout * 1000);
   };
 
@@ -56,11 +56,12 @@ const CraftingButton = (props) => {
     <Button
       title={`Craft ${item.desc}`}
       subtitle={createSubTitle(item)}
-      enabled={isCraftingItemEnabled(item, inventory)}
+      enabled={item.enabled}
       timeout={item.timeout}
       onClick={clickHandler}
+      hasRequirements={isCraftingItemEnabled(item, inventory)}
     >
-    </Button>
+    </Button >
   );
 }
 

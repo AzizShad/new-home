@@ -37,8 +37,8 @@ class Button extends React.Component {
     return this.props.enabled ? '' : 'disabled';
   }
 
-  addClassIfEnabled = () => {
-    return this.props.enabled ? 'enabled' : '';
+  addClassIfNeedsRequirements = () => {
+    return this.props.hasRequirements ? '' : 'needsRequirements';
   }
 
   clickEvent = () => {
@@ -51,7 +51,7 @@ class Button extends React.Component {
     return (
       <div
         onClick={this.clickEvent}
-        className={`button loadingButton ${this.addClassIfDisabled()}`}
+        className={`button loadingButton ${this.addClassIfDisabled()} ${this.addClassIfNeedsRequirements()}`}
       >
         <div>
           {this.props.title}

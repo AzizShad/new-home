@@ -74,21 +74,16 @@ export const inventorySlice = createSlice({
       })
     },
     checkResourceRequirements: (state, action) => {
-      const { crafting } = action.payload;
+      const { craftingId } = action.payload;
       const inventory = state
       for (let resourceId in inventory) {
         const resource = inventory[resourceId];
         const requirements = resource.requirements;
-        let hasRequirements = true;
         requirements.forEach(requirementId => {
-          const item = crafting[requirementId];
-          if (!item.crafted) {
-            hasRequirements = false;
+          if(craftingId === requirementId) {
+            resource.available = true;
           }
         });
-        if (hasRequirements) {
-          resource.available = true;
-        }
       }
     }
   },

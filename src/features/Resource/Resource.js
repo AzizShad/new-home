@@ -35,6 +35,7 @@ const ResourceButton = (props) => {
       enabled={resource.enabled}
       timeout={resource.timeout}
       onClick={clickHandler}
+      hasRequirements={true}
     >
     </Button>
   );
