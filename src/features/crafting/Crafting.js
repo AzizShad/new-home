@@ -5,6 +5,9 @@ import {
   createTool
 } from './craftingSlice';
 import {
+  resourceModifiers
+} from '../resource/ResourceTypes';
+import {
   removeResources,
   addModifiers,
   checkResourceRequirements
@@ -16,7 +19,7 @@ const CraftingButton = (props) => {
 
   const { inventory } = useSelector(state => state);
 
-  const createSubTitle = (item) => {
+  const createSubTitleRequirements = (item) => {
     const requirementsArray = [];
     Object.keys(item.requirements).forEach(requirement => {
       requirementsArray.push(`${item.requirements[requirement]} ${requirement}`)
@@ -27,8 +30,17 @@ const CraftingButton = (props) => {
     return `Cost: ${requirementsArray.join(', ')}`;
   };
 
+  const createSubTitleModifiers = (item) => {
+    const effectedResourcesArray = [];
+    const modifier = resourceModifiers.get(item.modifiers[0]);
+    Object.keys(item.effectedResources).forEach(resource => {
+      effectedResourcesArray.push(`${item.effectedResources[resource]}`)
+    });
+    return `${modifier.modifierDescription} ${effectedResourcesArray.join(', ')}`;
+  };
+
   const isCraftingItemEnabled = (item, inventory) => {
-    const { enabled, requirements } = item;
+    const { requirements } = item;
     let hasRequirements = true;
     for (let resourceId in requirements) {
       const resource = inventory[resourceId];
@@ -55,7 +67,8 @@ const CraftingButton = (props) => {
   return (
     <Button
       title={`Craft ${item.desc}`}
-      subtitle={createSubTitle(item)}
+      modifiers={createSubTitleModifiers(item)}
+      requirements={createSubTitleRequirements(item)}
       enabled={item.enabled}
       timeout={item.timeout}
       onClick={clickHandler}

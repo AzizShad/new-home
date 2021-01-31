@@ -57,7 +57,10 @@ class Button extends React.Component {
           {this.props.title}
         </div>
         <div className={`subtitle`}>
-          {this.props.subtitle}
+          {this.props.modifiers}
+        </div>
+        <div className={`subtitle requirements`}>
+          {this.props.requirements}
         </div>
         <LoadingDiv
           timeout={this.props.timeout}

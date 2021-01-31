@@ -18,7 +18,7 @@
   color: var(--default-subtext-color);
 }
 
-.button.needsRequirements .subtitle {
+.button.needsRequirements .requirements {
   color: var(--default-highlight-color);
 }
 

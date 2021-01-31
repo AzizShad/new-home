@@ -31,29 +31,48 @@ resourceModifiers.set('default', {
   title: 'Default',
   display: false,
   description: 'Default +1 modifier',
+  modifierDescription: '',
   action: (state, resource, amount) => { return amount + 1 }
 });
 resourceModifiers.set('unlock', {
   title: 'Unlock',
   display: false,
   description: 'You have unlocked this resource',
+  modifierDescription: 'Unlocks',
   action: (state, resource, amount) => { return amount }
 });
 resourceModifiers.set('wooden', {
   title: 'Wood',
   display: false,
   description: 'You have a wooden tool! +1 modifier',
+  modifierDescription: '+1 to',
   action: (state, resource, amount) => { return amount + 1 }
 });
 resourceModifiers.set('stone', {
   title: 'Stone',
   display: false,
   description: 'You have a stone tool! +2 modifier',
+  modifierDescription: '+2 to',
   action: (state, resource, amount) => { return amount + 2 }
 });
 resourceModifiers.set('iron', {
   title: 'Iron',
   display: false,
   description: 'You have a Iron tool! x2 modifier',
+  modifierDescription: 'x2 to',
   action: (state, resource, amount) => { return amount * 2 }
+});
+resourceModifiers.set('diamond', {
+  title: 'Diamond',
+  display: false,
+  description: 'You have a Diamond tool! x5 modifier',
+  modifierDescription: 'x5 to',
+  action: (state, resource, amount) => { return amount * 5 }
+});
+resourceModifiers.set('obsidian', {
+  title: 'Obsidian',
+  display: false,
+  description: 'You have a Obsidian tool! x50 modifier',
+  modifierDescription: 'x50 to',
+  action: (state, resource, amount) => { return amount * 50 }
 });
