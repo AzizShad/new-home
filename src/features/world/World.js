@@ -1,54 +1,55 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { ResourceButton } from '../resource/Resource';
-import { CraftingButton } from '../crafting/Crafting';
-
+import { TabPanel, Tab } from '../../Components';
+import Woods from "./Woods";
+import Camp from "./Camp";
+import Trader from "./Trader";
+import './World.css';
 
 const World = () => {
   const state = useSelector(state => state);
-  const inventory = useSelector(state => state.inventory);
-  const availableResources = [];
-  for (let key in inventory) {
-    if(inventory[key].available){
-      availableResources.push(inventory[key]);
-    }
-  }
+  const [activeTabKey, setactiveTab] = useState('woods');
 
-  const crafting = useSelector(state => state.crafting);
-  const craftableItems = [];
-  for (let key in crafting) {
-    if(crafting[key].craftable){
-      craftableItems.push(crafting[key]);
-    }
-  }
   useEffect(() => {
     localStorage.setItem('state', JSON.stringify(state));
   })
+
+  const places = {
+    woods: {
+      description: "Woods",
+      html: <Woods></Woods>
+    },
+    camp: {
+      description: "Camp",
+      html: <Camp></Camp>
+    },
+    trader: {
+      description: "Trader",
+      html: <Trader></Trader>
+    }
+  };
+
+  const tabs = Object.keys(places).map(placeKey => {
+    return (
+      <Tab
+        active={placeKey === activeTabKey}
+        clickEvent={() => setactiveTab(placeKey)}
+        description={places[placeKey].description}
+      ></Tab>
+    )
+  });
+
   return (
-    <div date-id="world">
-      {
-        availableResources.map((resource) => {
-          return (
-            <ResourceButton
-              key={resource.key}
-              resource={resource}
-            >
-            </ResourceButton>
-          );
-        })
-      }
-      {
-        craftableItems.map((item) => {
-          return (
-            <CraftingButton
-              key={item.key}
-              item={item}
-            >
-            </CraftingButton>
-          );
-        })
-      }
+    <div>
+      <TabPanel>
+        {tabs}
+      </TabPanel>
+      <div className='World' date-id='world'>
+        {
+          places[activeTabKey].html
+        }
+      </div >
     </div >
   );
 };

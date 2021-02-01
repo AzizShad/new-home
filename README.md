@@ -5,8 +5,8 @@ For visual design please reference ./public/design/
 ## Mechanic 1: Gathering
 You should be able to gather resources such as wood/sticks/berries
 
-## Mechanic 2: Building
-You should be able to use those resources to build bedrolls, tents, tools, etc
+## Mechanic 2: Crafting
+You should be able to use those resources to craft bedrolls, tents, tools, etc
 
 ## Mechanic 3: People
 You should be able to assign people that will gather/build for you

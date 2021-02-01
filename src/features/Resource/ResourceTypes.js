@@ -60,19 +60,19 @@ resourceModifiers.set('iron', {
   display: false,
   description: 'You have a Iron tool! +4 modifier',
   modifierDescription: '+4 to',
-  action: (state, resource, amount) => { return amount * 2 }
+  action: (state, resource, amount) => { return amount + 4 }
 });
 resourceModifiers.set('diamond', {
   title: 'Diamond',
   display: false,
   description: 'You have a Diamond tool! +10 modifier',
   modifierDescription: '+10 to',
-  action: (state, resource, amount) => { return amount * 5 }
+  action: (state, resource, amount) => { return amount + 10 }
 });
 resourceModifiers.set('obsidian', {
   title: 'Obsidian',
   display: false,
   description: 'You have a Obsidian tool! +25 modifier',
   modifierDescription: '+25 to',
-  action: (state, resource, amount) => { return amount * 50 }
+  action: (state, resource, amount) => { return amount + 25 }
 });

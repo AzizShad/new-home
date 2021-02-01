@@ -1,7 +1,7 @@
 .button {
   appearance: none;
   background: none;
-  font-size: 1.5em;
+  font-size: 1em;
   padding-left: 12px;
   padding-right: 12px;
   outline: none;
@@ -23,7 +23,6 @@
 }
 
 .textbox {
-  font-size: 32px;
   padding: 2px;
   width: 64px;
   text-align: center;
@@ -32,6 +31,7 @@
 
 .button:hover {
   border: 2px solid rgba(var(--default-highlight-color-s), 0.4);
+  color: var(--default-highlight-color);
 }
 
 .loadingButton {
@@ -56,4 +56,40 @@
   background-color: rgba(var(--default-highlight-color-s), 0.2);
   width: 0%;
   transition: 0s !important;
+}
+
+.tabPanel {
+  overflow: hidden;
+  margin-bottom: -1px;
+  background-color: var(--default-background-color);
+}
+
+.tabPanel button {
+  font-size: 1em;
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 12px;
+  transition: 0.3s;
+  color: var(--default-text-color);
+}
+
+.tabPanel button:hover {
+  background-color: var(--default-hightlight-background-color);
+}
+
+.tabPanel button.active {
+  border: 1px solid var(--default-text-color);
+  border-bottom: none;
+  background-color: var(--default-background-color);
+  cursor: default;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
 }

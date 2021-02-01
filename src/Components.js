@@ -28,49 +28,64 @@ const LoadingDiv = styled.div`
   }}
 `
 
-class Button extends React.Component {
-  constructor(data) {
-    super();
+const Button = (props) => {
+  const addClassIfDisabled = () => {
+    return props.enabled ? '' : 'disabled';
   }
 
-  addClassIfDisabled = () => {
-    return this.props.enabled ? '' : 'disabled';
+  const addClassIfNeedsRequirements = () => {
+    return props.hasRequirements ? '' : 'needsRequirements';
   }
 
-  addClassIfNeedsRequirements = () => {
-    return this.props.hasRequirements ? '' : 'needsRequirements';
-  }
-
-  clickEvent = () => {
-    if (this.props.enabled) {
-      this.props.onClick();
+  const clickEvent = () => {
+    if (props.enabled && props.hasRequirements) {
+      props.onClick();
     }
   }
 
-  render() {
-    return (
-      <div
-        onClick={this.clickEvent}
-        className={`button loadingButton ${this.addClassIfDisabled()} ${this.addClassIfNeedsRequirements()}`}
-      >
-        <div>
-          {this.props.title}
-        </div>
-        <div className={`subtitle`}>
-          {this.props.modifiers}
-        </div>
-        <div className={`subtitle requirements`}>
-          {this.props.requirements}
-        </div>
-        <LoadingDiv
-          timeout={this.props.timeout}
-          enabled={this.props.enabled}
-        ></LoadingDiv>
+  return (
+    <div
+      onClick={clickEvent}
+      className={`button loadingButton ${addClassIfDisabled()} ${addClassIfNeedsRequirements()}`}
+    >
+      <div>
+        {props.title}
       </div>
-    )
-  }
+      <div className={`subtitle`}>
+        {props.modifiers}
+      </div>
+      <div className={`subtitle requirements`}>
+        {props.requirements}
+      </div>
+      <LoadingDiv
+        timeout={props.timeout}
+        enabled={props.enabled}
+      ></LoadingDiv>
+    </div>
+  )
+};
+
+const TabPanel = (props) => {
+  return (
+    <div className="tabPanel">
+      {props.children}
+    </div>
+  )
+}
+
+const Tab = (props) => {
+  return (
+    <button
+      className={`${props.active ? 'active' : ''}`}
+      onClick={props.clickEvent}
+    >
+      {props.description}
+    </button >
+  )
 }
 
 export {
-  Button
+  Button,
+  TabPanel,
+  Tab
 }

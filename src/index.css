@@ -1,5 +1,5 @@
 :root {
-  --default-text-color-s: 255, 255, 255;
+  --default-text-color-s: 200, 200, 200;
   --default-text-color: rgb(var(--default-text-color-s));
   --default-subtext-color-s: 150, 150, 150;
   --default-subtext-color: rgb(var(--default-subtext-color-s));
@@ -7,18 +7,22 @@
   --default-highlight-color: rgb(var(--default-highlight-color-s));
   --default-disabled-color-s: 150, 150, 150;
   --default-disabled-color: rgb(var(--default-diabled-color-s));
+  --default-background-color-s: 0, 0, 0;
+  --default-background-color: rgb(var(--default-background-color-s));
+  --default-disabled-color: rgb(var(--default-diabled-color-s));
+  --default-hightlight-background-color-s: 50, 50, 50;
+  --default-hightlight-background-color: rgb(var(--default-hightlight-background-color-s));
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

@@ -4,7 +4,7 @@ import World from './features/world/World';
 function App() {
   return (
     <div className="App">
-        <World />
+      <World />
     </div>
   );
 }
