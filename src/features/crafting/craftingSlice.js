@@ -31,8 +31,7 @@ export const craftingSlice = createSlice({
       craftingItem.crafted = true;
     },
     disableItem: (state, action) => {
-      debugger;
-      const { craftingId } = action.payload;
+      const { craftingId } = action.payload; 
       const craftingItem = state[craftingId];
       craftingItem.enabled = false;
     },

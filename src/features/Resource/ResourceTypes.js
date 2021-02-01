@@ -58,21 +58,21 @@ resourceModifiers.set('stone', {
 resourceModifiers.set('iron', {
   title: 'Iron',
   display: false,
-  description: 'You have a Iron tool! x2 modifier',
-  modifierDescription: 'x2 to',
+  description: 'You have a Iron tool! +4 modifier',
+  modifierDescription: '+4 to',
   action: (state, resource, amount) => { return amount * 2 }
 });
 resourceModifiers.set('diamond', {
   title: 'Diamond',
   display: false,
-  description: 'You have a Diamond tool! x5 modifier',
-  modifierDescription: 'x5 to',
+  description: 'You have a Diamond tool! +10 modifier',
+  modifierDescription: '+10 to',
   action: (state, resource, amount) => { return amount * 5 }
 });
 resourceModifiers.set('obsidian', {
   title: 'Obsidian',
   display: false,
-  description: 'You have a Obsidian tool! x50 modifier',
-  modifierDescription: 'x50 to',
+  description: 'You have a Obsidian tool! +25 modifier',
+  modifierDescription: '+25 to',
   action: (state, resource, amount) => { return amount * 50 }
 });
