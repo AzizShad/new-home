@@ -26,6 +26,11 @@ const ResourceButton = (props) => {
         dispatch(checkCraftingRequirements({ inventory: inventory }));
         dispatch(checkResourceRequirements({ crafting: crafting }));
       });
+      if(resource.workers) {
+        setTimeout(()=> {
+          clickHandler();
+        }, 500);
+      }
     }, resource.timeout * 1000);
   };
 

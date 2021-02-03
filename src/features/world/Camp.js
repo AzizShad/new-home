@@ -10,19 +10,23 @@ const Camp = (props) => {
     }
   }
 
+  let craftingItems = [<div>Nothing to craft yet...</div>];
+  if (craftableItems.length) {
+    craftingItems = [<div className="title">Crafting Bench</div>];
+    craftingItems.push(craftableItems.map((item) => {
+      return (
+        <CraftingButton
+          key={item.key}
+          item={item}
+        >
+        </CraftingButton>
+      );
+    }));
+  }
+
   return (
     <div>
-      {
-        craftableItems.map((item) => {
-          return (
-            <CraftingButton
-              key={item.key}
-              item={item}
-            >
-            </CraftingButton>
-          );
-        })
-      }
+      {craftingItems}
     </div>
   )
 }

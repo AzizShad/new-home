@@ -17,7 +17,14 @@ createCraftingEntry('iron_mine', 'Iron Mine', 60, { wood: 200, stone: 100 }, ['u
 createCraftingEntry('diamond_mine', 'Diamond Mine', 90, { wood: 500, stone: 250, iron: 50 }, ['unlock'], ['diamond']);
 createCraftingEntry('obsidian_mine', 'Obsidian Mine', 120, { wood: 1000, stone: 500, iron: 100, diamond: 75 }, ['unlock'], ['obsidian']);
 
-function createCraftingEntry(key, desc, timeout, requirements, modifiers = ['default'], effectedResources = []) {
+createCraftingEntry('tent', 'Tent', 10, { wood: 25 }, null, null, 1);
+createCraftingEntry('house', 'House', 20, { wood: 250, stone: 50 }, null, null, 2);
+createCraftingEntry('small_village', 'Small Village', 30, { wood: 500, stone: 100, iron: 50 }, null, null, 3);
+createCraftingEntry('village', 'Village', 40, { wood: 1000, stone: 500, iron: 100, diamond: 50 }, null, null, 4);
+createCraftingEntry('town', 'Town', 50, { wood: 10000, stone: 1000, iron: 500, diamond: 100, obsidian: 50 }, null, null, 5);
+createCraftingEntry('city', 'City', 60, { wood: 100000, stone: 10000, iron: 5000, diamond: 1000, obsidian: 500 }, null, null, 10);
+
+function createCraftingEntry(key, desc, timeout, requirements, modifiers = ['default'], effectedResources = [], additionalPersons) {
   craftingTypes[key] = {
     key: key,
     desc: desc,
@@ -27,6 +34,7 @@ function createCraftingEntry(key, desc, timeout, requirements, modifiers = ['def
     effectedResources: effectedResources,
     enabled: true,
     craftable: false,
-    crafted: false
+    crafted: false,
+    additionalPersons: additionalPersons
   };
 }
